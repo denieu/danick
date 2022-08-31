@@ -43,7 +43,7 @@
     </section>
 
     <script>
-        const startDatetime = new Date(2021, 04, 02, 14, 00, 00, 00); // 14:00 at 2021/04/02
+        const startDatetime = new Date(2021, 04, 02, 23, 59, 59, 00);
 
         function updateText(newText) {
             document.getElementById("elapsed-time").innerHTML = newText;
@@ -68,6 +68,8 @@
 
             let elapsedYears = Math.floor(elapsedMonths / 12);
             elapsedMonths = elapsedMonths - (elapsedYears * 12);
+
+            // elapsedHours -= 14;  // So the birthday appears at midnight
 
             // console.log(elapsedYears, elapsedMonths, elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
             updateText(`${elapsedYears} ano(s) ${elapsedMonths} mes(es) ${elapsedDays} dia(s) ${elapsedHours} hora(s) ${elapsedMinutes} minuto(s) e ${elapsedSeconds} segundo(s)`);
