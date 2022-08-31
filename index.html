@@ -28,7 +28,7 @@
             align-items: center;
             text-align: center;
         }
-
+        
         h1 {
             display: block;
         }
@@ -43,12 +43,7 @@
     </section>
 
     <script>
-        const now = new Date();
-        const past = new Date('2021-04-02');
-        const diff = Math.abs(now.getTime() - past.getTime());
-        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-
-        const startDatetime = new Date(2021, 04, 02, 14, 00, 00, 00);  // 14:00 at 2021/04/02
+        const startDatetime = new Date(2021, 04, 02, 14, 00, 00, 00); // 14:00 at 2021/04/02
 
         function updateText(newText) {
             document.getElementById("elapsed-time").innerHTML = newText;
@@ -68,13 +63,13 @@
             let elapsedDays = Math.floor(elapsedHours / 24);
             elapsedHours = elapsedHours - (elapsedDays * 24);
 
-            let elapsedMonths = Math.floor(elapsedDays / 30);
-            elapsedDays = elapsedDays - (elapsedMonths * 30);
+            let elapsedMonths = Math.floor(elapsedDays / 30.416);
+            elapsedDays = Math.round(elapsedDays - (elapsedMonths * 30.416));
 
             let elapsedYears = Math.floor(elapsedMonths / 12);
             elapsedMonths = elapsedMonths - (elapsedYears * 12);
 
-            console.log(elapsedYears, elapsedMonths, elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds)
+            // console.log(elapsedYears, elapsedMonths, elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
             updateText(`${elapsedYears} ano(s) ${elapsedMonths} mes(es) ${elapsedDays} dia(s) ${elapsedHours} hora(s) ${elapsedMinutes} minuto(s) e ${elapsedSeconds} segundo(s)`);
         }
 
