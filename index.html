@@ -23,16 +23,23 @@
             width: 100%;
             height: 85vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+        }
+
+        h1 {
+            display: block;
         }
     </style>
 </head>
 
 <body>
     <section>
-        <h1></h1>
+        <h1>Já fazem incriveis</h1>
+        <h1 id="elapsed-time"></h1>
+        <h1>que a gente se aguenta</h1>
     </section>
 
     <script>
@@ -41,7 +48,40 @@
         const diff = Math.abs(now.getTime() - past.getTime());
         const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-        document.querySelector("h1").innerHTML = "Já fazem incriveis " + days + " dias que a gente se aguenta.";
+        const startDatetime = new Date(2021, 04, 02, 14, 00, 00, 00);  // 14:00 at 2021/04/02
+
+        function updateText(newText) {
+            document.getElementById("elapsed-time").innerHTML = newText;
+        }
+
+        function timeInterrupt() {
+            const nowDatetime = new Date();
+            const totalElapsedTimeMs = nowDatetime - startDatetime;
+
+            let elapsedSeconds = Math.floor(totalElapsedTimeMs / 1000);
+            let elapsedMinutes = Math.floor(elapsedSeconds / 60);
+            elapsedSeconds = elapsedSeconds - (elapsedMinutes * 60);
+
+            let elapsedHours = Math.floor(elapsedMinutes / 60);
+            elapsedMinutes = elapsedMinutes - (elapsedHours * 60);
+
+            let elapsedDays = Math.floor(elapsedHours / 24);
+            elapsedHours = elapsedHours - (elapsedDays * 24);
+
+            let elapsedMonths = Math.floor(elapsedDays / 30);
+            elapsedDays = elapsedDays - (elapsedMonths * 30);
+
+            let elapsedYears = Math.floor(elapsedMonths / 12);
+            elapsedMonths = elapsedMonths - (elapsedYears * 12);
+
+            console.log(elapsedYears, elapsedMonths, elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds)
+            updateText(`${elapsedYears} ano(s) ${elapsedMonths} mes(es) ${elapsedDays} dia(s) ${elapsedHours} hora(s) ${elapsedMinutes} minuto(s) e ${elapsedSeconds} segundo(s)`);
+        }
+
+        window.onload = () => {
+            timeInterrupt();
+            setInterval(timeInterrupt, 1000);
+        };
     </script>
 </body>
 
